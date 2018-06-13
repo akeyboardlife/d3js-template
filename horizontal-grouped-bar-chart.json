@@ -91,7 +91,7 @@
           "type": "band",
           "range": "height",
           "domain": {"data": "facet", "field": "position"},
-          "padding":0.1
+          "padding":0
         }
       ],
 
@@ -103,7 +103,7 @@
           "encode": {
             "enter": {
               "y": {"scale": "pos", "field": "position"},
-              "height": {"scale": "pos", "band": 1},
+              "height": {"scale": "pos", "band": 0.7},
               "x": {"scale": "xscale", "field": "value"},
               "x2": {"scale": "xscale", "value": 0},
               "fill": {"scale": "color", "field": "position"}
