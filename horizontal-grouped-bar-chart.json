@@ -2,33 +2,61 @@
   "width": 400,
   "height": 247,
   "padding": 5,
-
   "data": [
     {
       "name": "table",
       "values": [
-        {"category":"世界人口（万）", "position":2000, "value":18203},
-        {"category":"世界人口（万）", "position":2001, "value":19325},
-        {"category":"中国", "position":2000, "value":23489},
-        {"category":"中国", "position":2001, "value":23438},
-        {"category":"印度", "position":2000, "value":29034},
-        {"category":"印度", "position":2001, "value":31000}
+        {
+          "category": "世界人口（万）",
+          "position": 2000,
+          "value": 18203
+        },
+        {
+          "category": "世界人口（万）",
+          "position": 2001,
+          "value": 19325
+        },
+        {
+          "category": "中国",
+          "position": 2000,
+          "value": 23489
+        },
+        {
+          "category": "中国",
+          "position": 2001,
+          "value": 23438
+        },
+        {
+          "category": "印度",
+          "position": 2000,
+          "value": 29034
+        },
+        {
+          "category": "印度",
+          "position": 2001,
+          "value": 31000
+        }
       ]
     }
   ],
-
   "scales": [
     {
       "name": "yscale",
       "type": "band",
-      "domain": {"data": "table", "field": "category"},
+      "domain": {
+        "data": "table",
+        "field": "category"
+      },
       "range": "height",
-      "padding":0.2
+      "padding": 0.2
     },
     {
       "name": "xscale",
       "type": "linear",
-      "domain": {"data": "table", "field": "value"},
+      "domain": {
+        "data": "table",
+        "field": "value"
+      },
       "range": "width",
       "round": true,
       "zero": true,
@@ -37,36 +65,56 @@
     {
       "name": "color",
       "type": "ordinal",
-      "domain": {"data": "table", "field": "position"},
-      "range": ["#c23531", "#2f4554"]
+      "domain": {
+        "data": "table",
+        "field": "position"
+      },
+      "range": [
+        "#c23531",
+        "#2f4554"
+      ]
     }
   ],
-
   "axes": [
-    {"orient": "left", "scale": "yscale", "tickSize": 0, "labelPadding": 4, "zindex": 1,"domainWidth":0.5},
-    {"orient": "bottom", "scale": "xscale","domainWidth":0.5,"grid":true,"gridWidth":0.5}
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "tickSize": 0,
+      "labelPadding": 4,
+      "zindex": 1,
+      "domainWidth": 0.5
+    },
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "domainWidth": 0.5,
+      "grid": true,
+      "gridWidth": 0.5
+    }
   ],
-
   "legends": [
-  {
-    "type":  "symbol",
-    "fill":  "color",
-    "title": "年份",
-    "offset": 0,
-          "encode": {
+    {
+      "type": "symbol",
+      "fill": "color",
+      "title": "年份",
+      "offset": 0,
+      "encode": {
         "symbols": {
           "enter": {
-            "strokeWidth": {"value": 2},
-            "size": {"value": 50}
+            "strokeWidth": {
+              "value": 2
+            },
+            "size": {
+              "value": 50
+            }
           }
         }
-      }  }
-],
-
+      }
+    }
+  ],
   "marks": [
     {
       "type": "group",
-
       "from": {
         "facet": {
           "data": "table",
@@ -74,53 +122,94 @@
           "groupby": "category"
         }
       },
-
       "encode": {
         "enter": {
-          "y": {"scale": "yscale", "field": "category"}
+          "y": {
+            "scale": "yscale",
+            "field": "category"
+          }
         }
       },
-
       "signals": [
-        {"name": "height", "update": "bandwidth('yscale')"}
+        {
+          "name": "height",
+          "update": "bandwidth('yscale')"
+        }
       ],
-
       "scales": [
         {
           "name": "pos",
           "type": "band",
           "range": "height",
-          "domain": {"data": "facet", "field": "position"},
-          "padding":0
+          "domain": {
+            "data": "facet",
+            "field": "position"
+          },
+          "padding": 0
         }
       ],
-
       "marks": [
         {
           "name": "bars",
-          "from": {"data": "facet"},
+          "from": {
+            "data": "facet"
+          },
           "type": "rect",
           "encode": {
             "enter": {
-              "y": {"scale": "pos", "field": "position"},
-              "height": {"scale": "pos", "band": 0.7},
-              "x": {"scale": "xscale", "field": "value"},
-              "x2": {"scale": "xscale", "value": 0},
-              "fill": {"scale": "color", "field": "position"}
+              "y": {
+                "scale": "pos",
+                "field": "position"
+              },
+              "height": {
+                "scale": "pos",
+                "band": 0.7
+              },
+              "x": {
+                "scale": "xscale",
+                "field": "value"
+              },
+              "x2": {
+                "scale": "xscale",
+                "value": 0
+              },
+              "fill": {
+                "scale": "color",
+                "field": "position"
+              }
             }
           }
         },
         {
           "type": "text",
-          "from": {"data": "bars"},
+          "from": {
+            "data": "bars"
+          },
           "encode": {
             "enter": {
-              "x": {"field": "x2", "offset": -5},
-              "y": {"field": "y", "offset": {"field": "height", "mult": 0.5}},
-              "fill": {"value": "white"},
-              "align": {"value": "right"},
-              "baseline": {"value": "middle"},
-              "text": {"field": "datum.value"}
+              "x": {
+                "field": "x2",
+                "offset": -5
+              },
+              "y": {
+                "field": "y",
+                "offset": {
+                  "field": "height",
+                  "mult": 0.5
+                }
+              },
+              "fill": {
+                "value": "white"
+              },
+              "align": {
+                "value": "right"
+              },
+              "baseline": {
+                "value": "middle"
+              },
+              "text": {
+                "field": "datum.value"
+              }
             }
           }
         }
